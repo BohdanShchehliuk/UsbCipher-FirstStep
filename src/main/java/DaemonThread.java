@@ -21,7 +21,7 @@ class DaemonThread implements Runnable {
            System.out.println(Logic.listOfFileOfGivenTypes.size());
            logic.encryptAllFilesOfGivenType();
 
-            Thread.sleep(0,5);
+            Thread.sleep(0,2);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (Exception e) {
