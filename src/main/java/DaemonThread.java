@@ -12,8 +12,6 @@ class DaemonThread implements Runnable {
     }
 
 
-
-
     private void processSomething() {
         try {
            Logic logic = new Logic();

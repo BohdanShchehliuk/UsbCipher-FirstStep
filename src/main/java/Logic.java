@@ -2,9 +2,16 @@ import net.samuelcampos.usbdrivedetector.USBDeviceDetectorManager;
 import net.samuelcampos.usbdrivedetector.USBStorageDevice;
 
 import java.io.File;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
+import java.io.File;
+import java.io.IOException;
+import org.apache.commons.io.FileUtils;
 public class Logic {
     public static List<File> listOfFileOfGivenTypes = new ArrayList<>();
 
@@ -25,10 +32,19 @@ public class Logic {
 
     public void encryptAllFilesOfGivenType() throws Exception {
 
+        LocalDateTime date = LocalDateTime.now();
+       File [] list = File.listRoots();
+       System.out.println(Arrays.toString(list));
+       int count = 1;
+        File directory = new File(list[0].getPath()+"/Sipher/"+date.toLocalDate()+"/" +date.getNano());
+        FileUtils.forceMkdir(directory);
+        System.out.println("New Directory created !");
+
         for (File fileOfGivenType : listOfFileOfGivenTypes
         ) {
-            Encrypt.encryptFile("C:/Users/Buhgalter2/Downloads/UsbCipher-FirstStep (1)/UsbCipher-FirstStep/src/Новий Документ Microsoft Word (3).docx", "C:/Help/Новий Документ Microsoft Word (3).docx");
+            // програма сама повинна створювати папку + навзати її логіруванням. Тобто програму, яка визначає які постійні диски є і створює на них доки
+            Encrypt.encryptFile(fileOfGivenType.getPath(), directory+"/" +fileOfGivenType.getName());
+            count++;
         }
-
     }
 }
